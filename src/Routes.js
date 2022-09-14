@@ -4,6 +4,7 @@ import {
 import { AnimatePresence } from 'framer-motion';
 // pages
 import Home from './pages/Home';
+import PokemonDetails from './pages/PokemonDetails';
 
 export default function Routes() {
   const location = useLocation();
@@ -14,6 +15,7 @@ export default function Routes() {
         key={location.pathname}
       >
         <Route path="/" exact component={Home} />
+        <Route path="/pokemon/:id" exact component={PokemonDetails} />
       </Switch>
     </AnimatePresence>
   );

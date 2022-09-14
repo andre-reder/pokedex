@@ -59,7 +59,7 @@ export const InputSearchContainer = styled.div`
 
 export const Header = styled.header`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: ${({ justifyContent }) => justifyContent};
   margin-top: 32px;
   border-bottom: 2px solid ${({ theme }) => theme.colors.gray[100]};
@@ -109,11 +109,16 @@ export const Card = styled.div`
   border-radius: 4px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
+  transition: all 0.2s ease-in;
 
   & + & {
     margin-top: 16px !important;
+  }
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.darkerBackground};
   }
 
   .info {
@@ -122,32 +127,6 @@ export const Card = styled.div`
       align-items: center;
     }
   }
-
-  .actions {
-    display: flex;
-    align-items: center;
-
-    img {
-      width: 32px;
-      &:hover{
-        // padding: 2px 0;
-        opacity: 0.5;
-        transition: ease-in 0.2s;
-      }
-      &:not(:hover) {
-        opacity: 1;
-        transition: ease-in 0.2s;
-      }
-    }
-
-    a {
-      background: transparent;
-      border: none;
-      width: 23px;
-      height: 23px;
-      margin-right: 8px;
-      }
-  }
 `;
 
 export const ErrorContainer = styled.div`
@@ -155,12 +134,16 @@ export const ErrorContainer = styled.div`
   display: flex;
   align-items: center;
 
+  img {
+    width: 104px;
+  }
+
   .details {
     margin-left: 24px;
 
     strong {
       font-size: 22px;
-      color: ${({ theme }) => theme.colors.danger.main};
+      color: ${({ theme }) => theme.colors.primary.main};
       display: block;
       margin-bottom: 8px;
     }
@@ -187,12 +170,16 @@ export const EmptyListContainer = styled.div`
 export const SearchNotFoundContainer = styled.div`
   margin-top: 16px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 
   span {
     margin-left: 24px;
     color: ${({ theme }) => theme.colors.gray[200]};
     word-break: break-word;
+  }
+
+  img {
+    width: 96px;
   }
 `;
 
@@ -228,4 +215,15 @@ export const SecondaryButton = styled.button`
         background: ${({ theme, selected }) => (selected ? theme.colors.primary.background : theme.colors.primary.main)};
         color: ${({ theme }) => (theme.colors.lighterBackground)};
       }
+
+      &[disabled] {
+        cursor: default !important;
+      }
+`;
+
+export const ContainerGroup = styled.nav`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 `;

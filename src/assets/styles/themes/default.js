@@ -1,41 +1,25 @@
 export default {
   colors: {
     background: '#F6F5FC',
-    darkerBackground: '#cac5e8',
+    darkerBackground: '#f2f2f2',
     lighterBackground: '#fff',
     defaultBorder: '#dededf',
     backgroundWithOpacity: 'rgba(246, 245, 252, 0.7)',
 
     primary: {
-      lighter: '#bbedfb',
-      light: '#4aafff',
-      main: '#006FE6',
-      dark: '#00011e',
+      lighter: '#ffe67d',
+      light: '#ffdb4b',
+      main: '#e6b800',
+      dark: '#4e3d00',
     },
 
     gray: {
-      900: '#566a7f',
-      201: '#bcbcbc',
-      200: '#bcbcbc',
-      100: '#d9d9d9',
-      75: '#E6E6E6',
-      50: '#f1f1f1',
-    },
-
-    green: {
-      500: '#3ea76a',
-      100: '#c2ebd4',
-    },
-
-    orange: {
-      500: '#da7c0f',
-      100: '#fddcb2',
-    },
-
-    danger: {
-      light: '#F97171',
-      main: '#FC5050',
-      dark: '#F63131',
+      900: '#e6b800',
+      201: '#ffd11a',
+      200: '#ffd11a',
+      100: '#fff0ad',
+      75: '#fff0ad',
+      50: '#fff0ad',
     },
   },
 };

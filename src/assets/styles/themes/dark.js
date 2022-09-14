@@ -7,35 +7,19 @@ export default {
     backgroundWithOpacity: 'rgba(18, 18, 18, 0.7)',
 
     primary: {
-      dark: '#dff8ff',
-      main: '#4aafff',
-      light: '#006fe6',
-      lighter: '#04044a',
+      dark: '#ffe67d',
+      main: '#ffdb4b',
+      light: '#FFCC00',
+      lighter: '#4e3d00',
     },
 
     gray: {
-      50: '#566a7f',
-      75: '#bcbcbc',
-      100: '#d9d9d9',
-      200: '#E6E6E6',
-      201: '#bcbcbc',
-      900: '#f1f1f1',
-    },
-
-    green: {
-      100: '#1f5d3a',
-      500: '#7ed2a2',
-    },
-
-    orange: {
-      100: '#da7c0f',
-      500: '#fddcb2',
-    },
-
-    danger: {
-      dark: '#F97171',
-      main: '#FC5050',
-      light: '#F63131',
+      50: '#806600',
+      75: '#b38f00',
+      100: '#b38f00',
+      200: '#e6b807',
+      201: '#ffd11e',
+      900: '#ffdb4b',
     },
   },
 };

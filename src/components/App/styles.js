@@ -14,7 +14,7 @@ export const PageContainer = styled.div`
 `;
 
 export const RouteContainer = styled.div`
-  margin: 3em 16em;
+  margin: 1em 16em;
   display: flex;
   flex-direction: column;
   align-items: center;

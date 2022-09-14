@@ -20,12 +20,17 @@ export default createGlobalStyle`
 
   a {
         text-decoration: none;
-        background: ${({ theme }) => theme.colors.lighterBackground};
+        background: none;
         color: ${({ theme }) => theme.colors.gray[900]};
+        width: fit-content;
         &:hover {
           color: ${({ theme }) => theme.colors.gray[900]}
         }
       }
+
+  h1 {
+    margin: 0;
+  }
 
   body {
     background: ${({ theme }) => theme.colors.background};
@@ -76,11 +81,13 @@ export default createGlobalStyle`
 
       &:focus {
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%2867, 89, 113, 0.3%29'/%3e%3c/svg%3e");
+        box-shadow: none;
       }
 
       &:checked {
         background-position: right center;
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+        background-color: ${({ theme }) => theme.colors.primary.main};
       }
     }
 
@@ -96,5 +103,16 @@ export default createGlobalStyle`
   img.rightArrow {
     transform: rotate(90deg);
     width: 24px;
+  }
+
+  img.leftArrow {
+    transform: rotate(-90deg);
+    width: 24px;
+  }
+
+  .page-item {
+    .page-link {
+      padding: 4px 8px;
+    }
   }
 `;

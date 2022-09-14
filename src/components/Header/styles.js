@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.header`
   margin-top: 8px;
-  margin-bottom: 48px;
+  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,13 +12,13 @@ export const Container = styled.header`
   }
 
   img {
-    width: 600px;
+    width: 500px;
     @media(max-width: 600px) {
-      width: 400px;
+      width: 350px;
     }
 
     @media(max-width: 400px) {
-      width: 300px;
+      width: 250px;
     }
   }
 `;
