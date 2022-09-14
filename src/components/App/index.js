@@ -7,6 +7,7 @@ import darkTheme from '../../assets/styles/themes/dark';
 import moon from '../../assets/images/icons/moon.svg';
 import Routes from '../../Routes';
 import { Container, PageContainer, RouteContainer } from './styles';
+import Header from '../Header';
 
 export default function App() {
   const [theme, setTheme] = useState(defaultTheme);
@@ -29,6 +30,7 @@ export default function App() {
               <label className="form-check-label" htmlFor="flexSwitchCheckDefault"><img src={moon} alt="darkmode" /></label>
 
             </div>
+            <Header />
             <Routes />
           </RouteContainer>
         </PageContainer>

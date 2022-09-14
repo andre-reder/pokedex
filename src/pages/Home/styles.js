@@ -128,7 +128,7 @@ export const Card = styled.div`
     align-items: center;
 
     img {
-      width: 24px;
+      width: 32px;
       &:hover{
         // padding: 2px 0;
         opacity: 0.5;
@@ -194,4 +194,38 @@ export const SearchNotFoundContainer = styled.div`
     color: ${({ theme }) => theme.colors.gray[200]};
     word-break: break-word;
   }
+`;
+
+export const PaginationContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+`;
+
+export const SecondaryButton = styled.button`
+      color: ${({ theme, selected }) => (selected ? theme.colors.lighterBackground : theme.colors.primary.main)};
+      background: ${({ theme, selected }) => (selected ? theme.colors.primary.main : theme.colors.background)};
+      text-decoration: none;
+      font-weight: bold;
+      border: 1px solid ${({ theme }) => theme.colors.primary.main};
+      padding: 2px;
+      border-radius: 4px;
+      transition: all 0.2s ease-in;
+      font-size: 12px;
+      height: 24px;
+      width: 24px;
+      margin: 3px;
+
+      @media(max-width: 500px) {
+        font-size: 9px;
+        height: 20px;
+        padding: 1px 2px;
+  }
+
+      &:hover {
+        background: ${({ theme, selected }) => (selected ? theme.colors.primary.background : theme.colors.primary.main)};
+        color: ${({ theme }) => (theme.colors.lighterBackground)};
+      }
 `;

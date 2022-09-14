@@ -12,6 +12,8 @@ import {
   Card,
   ErrorContainer,
   SearchNotFoundContainer,
+  PaginationContainer,
+  SecondaryButton,
 } from './styles';
 
 import sad from '../../assets/images/icons/sad.svg';
@@ -28,7 +30,7 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const [nextAndPreviousPageQueryParams, setNextandPreviousPageQueryParams] = useState({});
+  const [responseData, setResponseData] = useState({});
 
   const filteredPokemons = useMemo(() => pokemons?.filter((pokemon) => (
     pokemon.name.toLowerCase().startsWith(searchTerm.toLowerCase())
@@ -42,7 +44,12 @@ export default function Home() {
       const BodyPokemonsList = await PokemonService.listPokemons(
         { queryParams: queryParams || 'limit=50&offset=0' },
       );
-      setNextandPreviousPageQueryParams({
+      const buttonsLabelArray = [];
+      for (let i = 0; i < Math.ceil(BodyPokemonsList.count / 50); i++) {
+        buttonsLabelArray.push(i + 1);
+      }
+      setResponseData({
+        buttonsLabelArray,
         nextPage: BodyPokemonsList.next,
         previousPage: BodyPokemonsList.previous,
       });
@@ -99,11 +106,27 @@ export default function Home() {
           )}
       >
         {!hasError && pokemons.length > 0 && (
-        <strong>
-          {filteredPokemons.length}
-          {' '}
-          {filteredPokemons.length === 1 ? 'pokémon' : 'pokémons'}
-        </strong>
+        <>
+          <strong>
+            {filteredPokemons.length}
+            {' '}
+            {filteredPokemons.length === 1 ? 'pokémon' : 'pokémons'}
+          </strong>
+          <Container>
+            <PaginationContainer>
+              <Row xs={1} md={1} lg={2}>
+                {responseData.buttonsLabelArray.map((buttonLabel) => (
+                  <SecondaryButton
+                    key={buttonLabel}
+                    selected={false}
+                  >
+                    {buttonLabel}
+                  </SecondaryButton>
+                ))}
+              </Row>
+            </PaginationContainer>
+          </Container>
+        </>
         )}
       </Header>
 
@@ -128,14 +151,12 @@ export default function Home() {
           <span>
             Nenhum resultado foi encontrado para
             {' '}
-            {nextAndPreviousPageQueryParams}
-            {' '}
             <strong>{`"${searchTerm}"`}</strong>
           </span>
         </SearchNotFoundContainer>
         )}
         <Container>
-          <Row xs={1} md={1} lg={2}>
+          <Row xs={2} md={2} lg={3}>
             {filteredPokemons.map((pokemon) => (
               <Col key={pokemon.id}>
                 <Card>

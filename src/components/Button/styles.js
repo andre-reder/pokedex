@@ -12,6 +12,7 @@ export const StyledButton = styled.button`
   border-radius: 4px;
   transition: background 0.2s ease-in;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 

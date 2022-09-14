@@ -7,14 +7,14 @@ export const Container = styled.div`
 
 export const PageContainer = styled.div`
   display: flex;
-  flex: 1 1 auto;
-  align-items: stretch;
+  align-items: center;
+  justify-content: center;
   padding: 0;
   width: 100%;
 `;
 
 export const RouteContainer = styled.div`
-  margin: 2.5em 16em 3em 16em;
+  margin: 3em 16em;
   display: flex;
   flex-direction: column;
   align-items: center;
