@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
-import { useEffect, useState, useCallback } from 'react';
+import {
+  useEffect, useState, useCallback,
+} from 'react';
 import { useParams, Link } from 'react-router-dom';
-
-import { useQuery } from '../../hooks/useQuery';
 
 import Loader from '../../components/Loader';
 import PokemonService from '../../services/PokemonService';
@@ -19,24 +19,21 @@ import { ErrorContainer } from '../Home/styles';
 
 export default function PokemonDetails() {
   const [pokemonInfos, setPokemonInfos] = useState({});
+  const [nextAndPreviousPokemon, setNextAndPreviousPokemon] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
   const { id } = useParams();
-  const query = useQuery();
-  const count = query.get('count');
 
   const getPokemonInfos = useCallback(async () => {
     try {
       setIsLoading(true);
       const responseBody = await PokemonService.getPokemon({ id });
       const pokemonDetails = {
-        name: responseBody.name,
+        name: responseBody.name.toUpperCase(),
         types: responseBody.types,
         frontImage: responseBody.sprites.front_default,
         backImage: responseBody.sprites.back_default,
-        nextPokemonId: id > Number(count) ? null : Number(id) + 1,
-        previousPokemonId: id <= 1 ? null : Number(id) - 1,
       };
       setPokemonInfos(pokemonDetails);
       setHasError(false);
@@ -45,14 +42,42 @@ export default function PokemonDetails() {
     } finally {
       setIsLoading(false);
     }
-  }, [count, id]);
+  }, [id]);
+
+  const getNextAndPreviousPokemon = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const responseBody = await PokemonService.listPokemons({ queryParams: 'limit=100000&offset=0' });
+      const pokemonList = responseBody.results;
+      const currentPokemon = pokemonList.filter((pokemon) => pokemon.url.split('/')[6] == id)[0];
+      const currentPokemonIndex = pokemonList.findIndex((pokemon) => (
+        pokemon.url == currentPokemon.url
+      ));
+      const previousPokemonId = pokemonList[currentPokemonIndex - 1]?.url.split('/')[6];
+      const nextPokemonId = pokemonList[currentPokemonIndex + 1]?.url.split('/')[6];
+      setNextAndPreviousPokemon({ previous: previousPokemonId, next: nextPokemonId });
+
+      setHasError(false);
+    } catch {
+      setHasError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [id]);
 
   useEffect(() => {
-    getPokemonInfos();
-  }, [getPokemonInfos]);
+    async function loadPokemonPage() {
+      setIsLoading(true);
+      await getPokemonInfos();
+      await getNextAndPreviousPokemon();
+      setIsLoading(false);
+    }
+    loadPokemonPage();
+  }, [getPokemonInfos, getNextAndPreviousPokemon]);
 
   function handleTryAgain() {
     getPokemonInfos();
+    getNextAndPreviousPokemon();
   }
 
   return (
@@ -62,33 +87,51 @@ export default function PokemonDetails() {
       {(!hasError && !isLoading) && (
         <>
           <Navbar>
-            {!pokemonInfos.previousPokemonId && (
+            {!nextAndPreviousPokemon.previous && (
               <>
+                <Link
+                  to={`/pokemon/${nextAndPreviousPokemon.previous}`}
+                  onClick={(event) => event.preventDefault()}
+                  className="disabledLink"
+                >
+                  <img src={arrow} alt="leftArrow" className="leftArrow" title="Ver pokémon anterior" />
+                </Link>
+
                 <h1>{pokemonInfos.name}</h1>
-                <Link to={`/pokemon/${pokemonInfos.nextPokemonId}?count=${count}`}>
+
+                <Link to={`/pokemon/${nextAndPreviousPokemon.next}`}>
                   <img src={arrow} alt="rightArrow" title="Ver próximo pokémon" className="rightArrow" />
                 </Link>
               </>
             )}
 
-            {!pokemonInfos.nextPokemonId && (
+            {!nextAndPreviousPokemon.next && (
               <>
-                <Link to={`/pokemon/${pokemonInfos.previousPokemonId}?count=${count}`}>
+                <Link to={`/pokemon/${nextAndPreviousPokemon.previous}`}>
                   <img src={arrow} alt="leftArrow" className="leftArrow" title="Ver pokémon anterior" />
                 </Link>
+
                 <h1>{pokemonInfos.name}</h1>
+
+                <Link
+                  to={`/pokemon/${nextAndPreviousPokemon.next}`}
+                  onClick={(event) => event.preventDefault()}
+                  className="disabledLink"
+                >
+                  <img src={arrow} alt="rightArrow" className="rightArrow" title="Ver pokémon anterior" />
+                </Link>
               </>
             )}
 
-            {(pokemonInfos.previousPokemonId && pokemonInfos.nextPokemonId) && (
+            {(nextAndPreviousPokemon.previous && nextAndPreviousPokemon.next) && (
               <>
-                <Link to={`/pokemon/${pokemonInfos.previousPokemonId}?count=${count}`}>
+                <Link to={`/pokemon/${nextAndPreviousPokemon.previous}`}>
                   <img src={arrow} alt="leftArrow" className="leftArrow" title="Ver pokémon anterior" />
                 </Link>
 
-                <h1>{pokemonInfos.name.toUpperCase()}</h1>
+                <h1>{pokemonInfos.name}</h1>
 
-                <Link to={`/pokemon/${pokemonInfos.nextPokemonId}?count=${count}`}>
+                <Link to={`/pokemon/${nextAndPreviousPokemon.next}`}>
                   <img src={arrow} alt="rightArrow" title="Ver próximo pokémon" className="rightArrow" />
                 </Link>
               </>

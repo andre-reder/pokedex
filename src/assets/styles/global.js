@@ -27,6 +27,11 @@ export default createGlobalStyle`
           color: ${({ theme }) => theme.colors.gray[900]}
         }
       }
+  
+      .disabledLink {
+        opacity: 0.5 !important;
+        cursor: not-allowed !important;
+      }
 
   h1 {
     margin: 0;
