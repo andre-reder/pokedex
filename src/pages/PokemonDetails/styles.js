@@ -8,6 +8,7 @@ export const Navbar = styled.nav`
   background: ${({ theme }) => theme.colors.lighterBackground};
   border-radius: 10px;
   padding: 4px 8px;
+  box-shadow: 8px 4px 10px rgba(0, 0, 0, 0.04);
 
   a {
     &:hover{

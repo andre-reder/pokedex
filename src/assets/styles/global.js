@@ -28,10 +28,10 @@ export default createGlobalStyle`
         }
       }
   
-      .disabledLink {
-        opacity: 0.5 !important;
-        cursor: not-allowed !important;
-      }
+  .disabledLink {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+  }
 
   h1 {
     margin: 0;
@@ -119,5 +119,10 @@ export default createGlobalStyle`
     .page-link {
       padding: 4px 8px;
     }
+  }
+
+  img.interrogationImage {
+    width: 50px;
+    margin-top: 16px;
   }
 `;

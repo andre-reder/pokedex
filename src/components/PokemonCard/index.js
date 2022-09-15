@@ -60,7 +60,7 @@ export default function PokemonCard({ pokemonDetails }) {
         )}
 
         {(!pokemonDetails.frontImage && !pokemonDetails.backImage) && (
-          <img src={interrogation} alt="" />
+          <img src={interrogation} alt="" className="interrogationImage" />
         )}
 
         {(pokemonDetails.backImage && !pokemonDetails.frontImage) && (

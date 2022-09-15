@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   useEffect, useState, useMemo, useCallback,
 } from 'react';
+import { motion } from 'framer-motion';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -64,7 +65,6 @@ export default function Home() {
       )));
       setHasError(false);
     } catch (error) {
-      console.log(error);
       setHasError(true);
     } finally {
       setIsLoading(false);
@@ -173,14 +173,21 @@ export default function Home() {
           <Row xs={2} md={2} lg={3}>
             {filteredPokemons.map((pokemon) => (
               <Col key={pokemon.id}>
-                <Link to={`/pokemon/${pokemon.id}?count=${paginationInformation.count}`}>
-                  <Card>
-                    <div className="info">
-                      <div className="pokemon-name">
-                        <strong>{pokemon.name.toUpperCase()}</strong>
+                <Link to={`/pokemon/${pokemon.id}`}>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: false }}
+                    transition={{ delay: 0.1, type: 'tween', stiffness: 10000 }}
+                  >
+                    <Card>
+                      <div className="info">
+                        <div className="pokemon-name">
+                          <strong>{pokemon.name.toUpperCase()}</strong>
+                        </div>
                       </div>
-                    </div>
-                  </Card>
+                    </Card>
+                  </motion.div>
                 </Link>
               </Col>
             ))}

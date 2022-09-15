@@ -15,11 +15,12 @@ export const CardContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 16px;
 `;
 
 export const PokemonTypeImagesContainer = styled.div`
-  margin-top: 16px;
-  margin-bottom: 8px;
+  margin-top: 8px;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
