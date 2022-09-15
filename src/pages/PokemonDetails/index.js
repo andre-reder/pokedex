@@ -4,7 +4,7 @@ import {
   useEffect, useState, useCallback,
 } from 'react';
 import { useParams, Link } from 'react-router-dom';
-
+import { motion } from 'framer-motion';
 import Loader from '../../components/Loader';
 import PokemonService from '../../services/PokemonService';
 import Transitions from '../../components/Transition';
@@ -138,9 +138,16 @@ export default function PokemonDetails() {
               </>
             )}
           </Navbar>
-          <PokemonCard
-            pokemonDetails={pokemonInfos}
-          />
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: false }}
+            transition={{ delay: 0.2, type: 'tween', stiffness: 10000 }}
+          >
+            <PokemonCard
+              pokemonDetails={pokemonInfos}
+            />
+          </motion.div>
         </>
       )}
 
