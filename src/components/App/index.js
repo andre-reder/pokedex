@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { ThemeProvider } from 'styled-components';
 import { useState } from 'react';
 

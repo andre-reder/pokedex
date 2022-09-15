@@ -14,7 +14,7 @@ export default function Routes() {
         location={location}
         key={location.pathname}
       >
-        <Route path="/" exact component={Home} />
+        <Route path="/pokedex" exact component={Home} />
         <Route path="/pokemon/:id" exact component={PokemonDetails} />
       </Switch>
     </AnimatePresence>

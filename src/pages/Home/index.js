@@ -1,3 +1,5 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable react/jsx-no-bind */
 // import { PageHeader } from './styles';
 import { Link } from 'react-router-dom';
 import {

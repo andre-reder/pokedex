@@ -6,7 +6,7 @@ import { Container } from './styles';
 export default function PageHeader() {
   return (
     <Container>
-      <Link to="/">
+      <Link to="/pokedex">
         <img src={arrow} alt="back" />
         <span>Voltar</span>
       </Link>
