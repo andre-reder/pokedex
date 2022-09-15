@@ -1,7 +1,6 @@
 export default {
   colors: {
     background: '#121212',
-    defaultBorder: '#121212',
     lighterBackground: '#000',
     darkerBackground: '#404040',
     backgroundWithOpacity: 'rgba(18, 18, 18, 0.7)',
@@ -13,7 +12,7 @@ export default {
       lighter: '#4e3d00',
     },
 
-    gray: {
+    yellow: {
       50: '#806600',
       75: '#b38f00',
       100: '#b38f00',

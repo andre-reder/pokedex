@@ -26,8 +26,4 @@ export const Container = styled.header`
       transform: rotate(-90deg);
     }
   }
-
-  h1 {
-    font-size: 24px;
-  }
 `;

@@ -66,19 +66,19 @@ export default function PokemonDetails() {
     }
   }, [id]);
 
-  useEffect(() => {
-    async function loadPokemonPage() {
-      setIsLoading(true);
-      await getPokemonInfos();
-      await getNextAndPreviousPokemon();
-      setIsLoading(false);
-    }
-    loadPokemonPage();
+  const loadPokemonPage = useCallback(async () => {
+    setIsLoading(true);
+    await getPokemonInfos();
+    await getNextAndPreviousPokemon();
+    setIsLoading(false);
   }, [getPokemonInfos, getNextAndPreviousPokemon]);
 
+  useEffect(() => {
+    loadPokemonPage();
+  }, [loadPokemonPage]);
+
   function handleTryAgain() {
-    getPokemonInfos();
-    getNextAndPreviousPokemon();
+    loadPokemonPage();
   }
 
   return (

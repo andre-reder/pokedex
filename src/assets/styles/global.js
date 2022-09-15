@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
   * {
@@ -19,12 +19,12 @@ export default createGlobalStyle`
   }
 
   a {
-        text-decoration: none;
-        background: none;
-        color: ${({ theme }) => theme.colors.gray[900]};
-        width: fit-content;
+      text-decoration: none;
+      background: none;
+      color: ${({ theme }) => theme.colors.yellow[900]};
+      width: fit-content;
         &:hover {
-          color: ${({ theme }) => theme.colors.gray[900]}
+          color: ${({ theme }) => theme.colors.yellow[900]}
         }
       }
   
@@ -39,30 +39,12 @@ export default createGlobalStyle`
 
   body {
     background: ${({ theme }) => theme.colors.background};
-    color: ${({ theme }) => theme.colors.gray[900]};
+    color: ${({ theme }) => theme.colors.yellow[900]};
     transition: background-color .3s;
   }
 
   button {
     cursor: pointer;
-  }
-
-  input {
-    border-color: ${({ theme }) => theme.colors.defaultBorder} !important;
-    &:hover {
-      border-color: ${({ theme }) => theme.colors.darkerBackground} !important;
-    }
-    &:focus {
-      border-color: ${({ theme }) => theme.colors.primary.main} !important;
-      ${({ theme, error }) => error && css`
-    color: ${theme.colors.danger.main};
-    border-color: ${theme.colors.danger.main} !important;
-  `};
-    }
-    ${({ theme, error }) => error && css`
-    color: ${theme.colors.danger.main} !important;
-    border-color: ${theme.colors.danger.main} !important;
-  `};
   }
 
   .col {

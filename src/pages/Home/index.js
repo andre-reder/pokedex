@@ -1,6 +1,5 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable react/jsx-no-bind */
-// import { PageHeader } from './styles';
 import { Link } from 'react-router-dom';
 import {
   useEffect, useState, useMemo, useCallback,
@@ -54,9 +53,6 @@ export default function Home() {
       setPaginationInformation({
         buttonsLabelArray,
         currentPage,
-        nextPage: BodyPokemonsList.next,
-        previousPage: BodyPokemonsList.previous,
-        count: BodyPokemonsList.count,
       });
       const PokemonsList = BodyPokemonsList.results;
       setPokemons(PokemonsList.map((pokemon) => (
